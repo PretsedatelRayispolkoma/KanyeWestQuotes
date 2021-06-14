@@ -9,8 +9,6 @@ namespace KanyeWestQuotes
     {
         static void Main(string[] args)
         {
-            //var ApiKey = "Your API Key";
-            //var City = "Kazan";
             var url = $"https://api.kanye.rest";
 
             var request = WebRequest.Create(url);
@@ -27,9 +25,8 @@ namespace KanyeWestQuotes
             using (var streamReader = new StreamReader(response.GetResponseStream()))
             {
                 string result = streamReader.ReadToEnd();
-               // Console.WriteLine(result);
-                var weatherForecast = JsonConvert.DeserializeObject<Root>(result);
-                Console.WriteLine(weatherForecast.quote);
+                var yeQuote = JsonConvert.DeserializeObject<Root>(result);
+                Console.WriteLine(yeQuote.quote);
             }
 
         }
