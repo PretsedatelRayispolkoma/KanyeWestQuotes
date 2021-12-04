@@ -11,12 +11,20 @@ namespace TelegramBot
         static void Main(string[] args)
         {
 
-            TelegramBotClient bot = new TelegramBotClient("1804492006:AAG0Yr3OnMk37L9qZVjVBTbVgrahPXPAO_I");
+            TelegramBotClient bot = new TelegramBotClient("5085818592:AAF4P4GUksDleR37VdtVT8rdR3fZgN-YZio");
 
             bot.OnMessage += (s, arg) =>
             {
-                Console.WriteLine($"{arg.Message.Chat.FirstName}: {arg.Message.Text}");
-                bot.SendTextMessageAsync(arg.Message.Chat.Id, $"Your Yeezus quote is ''{GetQuote(arg.Message.Text)}''");
+                if(arg.Message.Text == "/getquot")
+                {
+                    Console.WriteLine($"{arg.Message.Chat.FirstName}: {arg.Message.Text}");
+                    bot.SendTextMessageAsync(arg.Message.Chat.Id, $"Your Yeezus quote is ''{GetQuote(arg.Message.Text)}''");
+                }
+                else
+                {
+                    bot.SendTextMessageAsync(arg.Message.Chat.Id, "Unknown command");
+                }
+                
             };
 
             bot.StartReceiving();
